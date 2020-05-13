@@ -1,6 +1,6 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { createHashHistory } from 'history';
+import { Router, Switch, Route, Redirect } from "react-router-dom";
+import { createBrowserHistory } from 'history';
 import { 
   Login, Logout, Signup, ForgotPassword, Verification, Dashboard, ResetPassword, 
   UserProfile, OverlaysList, LinksList, CreateOverlay, OverlayType, CustomizeOverlay, 
@@ -10,9 +10,10 @@ import * as actionTypes from './actiontypes';
 import constants from './constants';
 import PrivateRoute from './index';
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 
 export function redirectTo(url) {
+  debugger;
   history.push(url);
   return {
     type: actionTypes.ON_REIRECT,
@@ -22,7 +23,7 @@ export function redirectTo(url) {
 
 export default function Routes() {
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route exact path={constants.BASE_PATH}>
           <Redirect to={constants.DASHBOARD} />

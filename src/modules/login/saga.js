@@ -29,10 +29,18 @@ function* onLogin({ username, password, remember, redirectUrl }) {
 
 function* onSignup({ redirectUrl, ...userInputs }) {
     const { message = {}, type } = API_CONFIG.USER_CREATE;
+    var query = new URLSearchParams(window.location.search);
+    let referredBy = '';
+    try {
+        referredBy = atob(query.get('referral'));
+    } catch (e) {
+        referredBy = '';
+    }
+
     try {
         const user = yield api[type]({ 
             ...API_CONFIG.USER_CREATE,
-            body: { ...userInputs }, 
+            body: { ...userInputs, referredBy }, 
         });
         if (user) {
             showToast(message.success, 'success');

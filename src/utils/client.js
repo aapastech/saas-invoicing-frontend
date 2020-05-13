@@ -5,6 +5,7 @@ import { showToast } from 'utils/ui';
 import routeConstants from 'modules/router/constants';
 import { actionDispatchHelper } from 'app/actions';
 import { onLogout } from 'modules/router/actions';
+import { getIsUserAuthenticatedFromStore } from 'modules/router/selectors';
 
 function getAuthHeaders() {
     const userToken = getuserTokenFromStore();
@@ -45,7 +46,7 @@ function parameterizeUrl(url, urlParams = {}) {
 function apiErrorHandler(e) {
     if (e.message === 'Failed to fetch') {
         showToast('Engineers at work! Please try again later', 'error', { exclusive: true });
-    } else if(e.status === 400) {
+    } else if(e.status === 400 && getIsUserAuthenticatedFromStore()) {
         showToast('Please login again. You have been logged out', 'error', { exclusive: true });
     }
     _.forEach(client.subscribers, ({ onError }) => onError(onError));

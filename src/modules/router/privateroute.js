@@ -6,10 +6,6 @@ import { Route } from "react-router-dom";
 import MainBody from 'modules/mainbody';
 
 export class PrivateRoute extends React.Component {
-    state = {
-      isAuthenticated: false, 
-    };
-
     componentDidMount() {
       const { path, isAuthenticated, onRedirectToLogin } = this.props;
       if (!isAuthenticated) {

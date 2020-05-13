@@ -13,6 +13,7 @@ function parseAccountDetails(userDetails) {
         { label: 'Name', value: userDetails.name },
         { label: 'Email', value: userDetails.username },
         { label: 'Timezone', value: userDetails.timezone },
+        { label: 'Referral Link', value: userDetails.referralLink, type: 'link' },
     ];
 }
 

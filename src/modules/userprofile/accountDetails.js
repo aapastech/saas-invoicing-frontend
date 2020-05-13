@@ -2,9 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Icon } from 'blocks';
+import Link from 'components/link';
 import * as actions from './actions';
 import * as selectors from './selectors';
-import { Icon } from 'blocks';
 import { timezones } from './constants';
 
 class AccountDetails extends React.Component {
@@ -31,10 +32,13 @@ class AccountDetails extends React.Component {
                 </div>
                 <div className='flex-y m-top-10'>
                     {_.map(accountDetails, (detail, index) => {
-                        let { value } = detail;
+                        let { value, type } = detail;
                         if(detail.label === 'Timezone') {
                             value = _.find(timezones, { value: value}).text;
                             value = `${detail.value} / ${value}`;
+                        }
+                        if(type === 'link') {
+                            value = <Link url={value} hasCopy maxLength={35} />
                         }
                         return (
                             <div key={`detail-${index}`} className='detail flexible p-6-3'>
