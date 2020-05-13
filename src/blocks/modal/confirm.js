@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal } from 'blocks';
-import { Button } from 'blocks';
+import { Modal, Button } from 'blocks';
 
 export default class Confirmation extends React.Component {
     constructor() {

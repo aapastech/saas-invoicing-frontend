@@ -17,8 +17,8 @@ function getAuthHeaders() {
     return false;
 }
 
-function prepareHeaders(userProvidedHeaders, isProtected) {
-    let headers = {
+function prepareHeaders(userProvidedHeaders, isProtected, noContentHeaders) {
+    let headers = noContentHeaders ? {} : {
         'Content-Type': 'application/json',
     }; 
     if (isProtected) {
@@ -44,26 +44,32 @@ function parameterizeUrl(url, urlParams = {}) {
 }
 
 function apiErrorHandler(e) {
+    let redirectError = false;
     if (e.message === 'Failed to fetch') {
+        redirectError = true;
         showToast('Engineers at work! Please try again later', 'error', { exclusive: true });
     } else if(e.status === 400 && getIsUserAuthenticatedFromStore()) {
+        redirectError = true;
         showToast('Please login again. You have been logged out', 'error', { exclusive: true });
     }
     _.forEach(client.subscribers, ({ onError }) => onError(onError));
-    redirectTo(routeConstants.LOGIN);
-    actionDispatchHelper(onLogout);
+    if (redirectError) {
+        redirectTo(routeConstants.LOGIN);
+        actionDispatchHelper(onLogout);
+    }
     throw e;
 }
 
 function callAPI(
     method, userProvidedHeaders, isProtected, url, urlParams, isJson, body = null, 
-    hasLoader = true,
+    hasLoader = true, noContentHeaders = false, noBodyChange = false,
     ) {
-    const headers = prepareHeaders(userProvidedHeaders, isProtected);
+    const headers = prepareHeaders(userProvidedHeaders, isProtected, noContentHeaders);
     const parameterizedUrl = parameterizeUrl(url, urlParams);
     const optionalParams = {};
     if (body) {
-        optionalParams.body = JSON.stringify(body)
+        if (!noBodyChange) optionalParams.body = JSON.stringify(body);
+        else optionalParams.body = body;
     }
 
     //Fire onStart of all subscribers
@@ -103,24 +109,24 @@ const nop = _.noop;
 const client = {
     subscribers: {},
     get: ({ 
-        url, headers = {}, isProtected = true, urlParams = {}, isJson = true, hasLoader 
+        url, headers = {}, isProtected = true, urlParams = {}, isJson = true, hasLoader, noContentHeaders, noBodyChange
     }) => {
-        return callAPI('GET', headers, isProtected, url, urlParams, isJson, null, hasLoader);
+        return callAPI('GET', headers, isProtected, url, urlParams, isJson, null, hasLoader, noContentHeaders, noBodyChange);
     },
     post: ({ 
-        url, headers, isProtected = true, isJson = true, urlParams = null, body = {}, hasLoader 
+        url, headers, isProtected = true, isJson = true, urlParams = null, body = {}, hasLoader , noContentHeaders, noBodyChange
     }) => {
-        return callAPI('POST', headers, isProtected, url, urlParams, isJson, body, hasLoader);
+        return callAPI('POST', headers, isProtected, url, urlParams, isJson, body, hasLoader, noContentHeaders, noBodyChange);
     },
     put: ({ 
-        url, headers, isProtected = true, isJson = true, urlParams = null, body = {}, hasLoader 
+        url, headers, isProtected = true, isJson = true, urlParams = null, body = {}, hasLoader, noContentHeaders, noBodyChange
     }) => {
-        return callAPI('PUT', headers, isProtected, url, urlParams, isJson, body, hasLoader);
+        return callAPI('PUT', headers, isProtected, url, urlParams, isJson, body, hasLoader, noContentHeaders, noBodyChange);
     },
     delete: ({ 
-        url, headers = {}, isProtected = true, urlParams = {}, isJson = true, hasLoader
+        url, headers = {}, isProtected = true, urlParams = {}, isJson = true, hasLoader, noContentHeaders, noBodyChange
     }) => {
-        return callAPI('DELETE', headers, isProtected, url, urlParams, isJson, null, hasLoader);
+        return callAPI('DELETE', headers, isProtected, url, urlParams, isJson, null, hasLoader, noContentHeaders, noBodyChange);
     },
     subscribe: ({ onStart = nop, onError = nop, onSuccess = nop, onComplete = nop }) => {
         const subscribersCount = _.values(client.subscribers);

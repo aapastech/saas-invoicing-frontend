@@ -7,6 +7,7 @@ import links from 'modules/links/reducer';
 import dashboard from 'modules/dashboard/reducer';
 import profile from 'modules/userprofile/reducer';
 import admin from 'modules/admin/reducer';
+import image from 'modules/image/reducer';
 
 export default combineReducers({
   auth,
@@ -15,5 +16,6 @@ export default combineReducers({
   links,
   dashboard,
   profile,
-  admin
+  admin,
+  image,
 })

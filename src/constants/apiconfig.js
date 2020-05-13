@@ -258,6 +258,20 @@ const API_CONFIG = {
             },
         }
     },
+    UPLOAD_FILE: {
+        url: `${host}upload`,
+        type: 'post',
+        isProtected: true,
+        isJson: false,
+        message: {
+            success: 'File uploaded successfully',
+            error: {
+                400: 'Please login again, your token has expired',
+                401: 'You do not have permissions to upload the file',
+                500: 'Please try again after some time. Engineers are at work!',
+            },
+        }
+    }
 };
 
 export default API_CONFIG;

@@ -1,9 +1,64 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Input, Form, FormField, Button, Radio, FormGroup, ColorPicker } from 'blocks';
+import { ImageUpload } from 'modules';
 
 export default class CustomizeForm extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            showLogoUpload: false,
+            showBackgroundUpload: false,
+        }
+        this.handleLogoImage = this.handleLogoImage.bind(this);
+        this.handleHideLogoImage = this.handleHideLogoImage.bind(this);
+        this.handleSaveLogoImageLink = this.handleSaveLogoImageLink.bind(this);
+        this.handleBackgroundImage = this.handleBackgroundImage.bind(this);
+        this.handleHideBackgroundImage = this.handleHideBackgroundImage.bind(this);
+        this.handleSaveBackgroundImageLink = this.handleSaveBackgroundImageLink.bind(this);
+    }
+
+    handleLogoImage() {
+        this.setState({ showLogoUpload: true });
+    }
+
+    handleHideLogoImage() {
+        this.setState({ showLogoUpload: false });
+    }
+
+    handleSaveLogoImageLink(logoUrl) {
+        this.props.saveState(
+            { 
+                logo: {
+                    ...this.props.featureFlags.logo,
+                    image: logoUrl,
+                }
+            }
+        );
+        this.handleHideLogoImage();
+    }
+
+    handleBackgroundImage() {
+        this.setState({ showBackgroundUpload: true });
+    }
+
+    handleHideBackgroundImage() {
+        this.setState({ showBackgroundUpload: false });
+    }
+
+    handleSaveBackgroundImageLink(logoUrl) {
+        this.props.saveState(
+            { 
+                background: {
+                    ...this.props.featureFlags.background,
+                    image: logoUrl,
+                }
+            }
+        );
+        this.handleHideBackgroundImage();
+    }
     render() {
+        const { showLogoUpload, showBackgroundUpload } = this.state;
         const { featureFlags, onChange, saveState, onSave } = this.props;
         return(
             <>
@@ -132,6 +187,10 @@ export default class CustomizeForm extends React.Component {
                                     <FormField>
                                         <label>Logo image</label>
                                         <Input 
+                                            label={
+                                                <Button type='button' onClick={this.handleLogoImage}>Upload</Button>
+                                            }
+                                            labelPosition='right'
                                             placeholder='Please enter the logo image URL' 
                                             value={featureFlags.logo.image} 
                                             onChange={e => saveState(
@@ -166,6 +225,10 @@ export default class CustomizeForm extends React.Component {
                                 <FormField>
                                     <label>Background image</label>
                                     <Input 
+                                        label={
+                                            <Button type='button' onClick={this.handleBackgroundImage}>Upload</Button>
+                                        }
+                                        labelPosition='right'
                                         placeholder='Please enter the background image URL' 
                                         value={featureFlags.background.image} 
                                         onChange={e => saveState(
@@ -337,6 +400,18 @@ export default class CustomizeForm extends React.Component {
                         </div>
                     </Form>
                 </div>
+                {showLogoUpload && (
+                    <ImageUpload 
+                        onNewFileLink={this.handleSaveLogoImageLink} 
+                        onCancel={this.handleHideLogoImage} 
+                    />
+                )}
+                {showBackgroundUpload && (
+                    <ImageUpload 
+                        onNewFileLink={this.handleSaveBackgroundImageLink} 
+                        onCancel={this.handleHideBackgroundImage} 
+                    />
+                )}
             </>
         );
     }

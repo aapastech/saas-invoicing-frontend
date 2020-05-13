@@ -6,6 +6,7 @@ import linksSagas from 'modules/links/saga';
 import dashboardSagas from 'modules/dashboard/saga';
 import profileSagas from 'modules/userprofile/saga';
 import adminSagas from 'modules/admin/saga';
+import imageSagas from 'modules/image/saga';
 import modelSagas from 'models/saga';
 // import routerSagas from 'modules/router/saga';
 
@@ -18,6 +19,7 @@ const sagas = [
     ...dashboardSagas,
     ...profileSagas,
     ...adminSagas,
+    ...imageSagas,
     ...modelSagas,
 ];
 

@@ -8,3 +8,4 @@ export { default as OverlayType } from './overlays/overlay-type';
 export { default as CustomizeOverlay } from './overlays/customize';
 export { default as UserProfile } from './userprofile';
 export { default as Admin } from './admin';
+export { default as ImageUpload } from './image';
