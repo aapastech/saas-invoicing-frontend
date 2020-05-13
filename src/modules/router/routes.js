@@ -13,7 +13,6 @@ import PrivateRoute from './index';
 const history = createBrowserHistory();
 
 export function redirectTo(url) {
-  debugger;
   history.push(url);
   return {
     type: actionTypes.ON_REIRECT,
