@@ -69,6 +69,7 @@ export default class CustomizedOverlay extends React.Component {
                                 </div>
                             )}
                             {showButton && (
+                                <a target='_blank' href={button.url}>
                                     <button
                                         style={{
                                             backgroundColor: button.color,
@@ -77,6 +78,7 @@ export default class CustomizedOverlay extends React.Component {
                                     >
                                         {button.name}
                                     </button>
+                                </a>
                             )}
                         </div>
                         <div className={socialIconsClass}>

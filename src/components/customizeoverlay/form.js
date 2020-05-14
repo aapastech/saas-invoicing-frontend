@@ -359,6 +359,21 @@ export default class CustomizeForm extends React.Component {
                                         </Input>
                                     </FormField>
                                 </FormGroup>
+                                <FormField>
+                                    <label>Button link</label>
+                                    <Input 
+                                        placeholder='Please enter URL the button points to' 
+                                        value={featureFlags.button.url} 
+                                        onChange={e => saveState(
+                                            { 
+                                                button: {
+                                                    ...featureFlags.button,
+                                                    url: e.target.value,
+                                                }
+                                            }
+                                        )}
+                                    />
+                                </FormField>
                             </div>
                         )}
                         {featureFlags.showSocialIcons && (

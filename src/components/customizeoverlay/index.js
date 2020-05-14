@@ -6,7 +6,7 @@ import CustomizeForm from './form';
 import CustomizedOverlay from './overlay';
 const background = {};
 const logo = {
-    url: 'http://utv.com',
+    url: `${process.env.REACT_APP_API_HOSTNAME}`,
 };
 const message = {
     color: '',
@@ -19,7 +19,8 @@ const input = {
 const button = {
     color: '',
     textColor: '',
-    name: 'Yes, Get Tips!'
+    name: 'Yes, Get Tips!',
+    url: `${process.env.REACT_APP_API_HOSTNAME}`,
 };
 const socialIcons = {
     facebook: '',
