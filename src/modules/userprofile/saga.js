@@ -29,6 +29,7 @@ function* onGetAccountDetails() {
         });
         yield put(actions.getAccountDetailsSuccess(parseAccountDetails(userDetails)));
         yield put(actions.getAccountMembershipSuccess(getMembershipDetails(userDetails)));
+        yield put(actions.saveUserDetails(userDetails));
         const isPaidmember = isPaidMemberFromStore();
         yield put(actions.setFeatureFlags(
             queries.prepareFeatureFlags(isPaidmember, userDetails)

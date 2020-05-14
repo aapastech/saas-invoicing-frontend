@@ -20,6 +20,8 @@ export default function profile(state = initialState, action) {
             return _.defaultsDeep({}, { membership: action.membership }, state);
         case actiontypes.UPDATE_FEATURE_FLAGS:
             return _.defaultsDeep({}, { featureFlags: action.featureFlags }, state);
+        case actiontypes.SAVE_USER_DETAILS:
+            return _.defaultsDeep({}, { user: action.userDetails }, state);
         default:
             return state;
     };

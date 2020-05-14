@@ -46,3 +46,10 @@ export function setFeatureFlags(featureFlags) {
         featureFlags
     }
 }
+
+export function saveUserDetails(userDetails) {
+    return {
+        type: types.SAVE_USER_DETAILS,
+        userDetails
+    }
+}

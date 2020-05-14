@@ -87,7 +87,9 @@ function callAPI(
                 return response.text();
             } else {
                 _.forEach(client.subscribers, ({ onError }) => onError(onError));
-                throw { status: response.status, message: response.statusText };
+                return response.json().then(jsonError => {
+                    throw { status: response.status, ...jsonError };
+                });
             }
         }).catch(apiErrorHandler);
         return callPromise;
