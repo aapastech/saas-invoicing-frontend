@@ -49,10 +49,12 @@ class PaypalButton extends React.Component {
       ],
     });
  
-    const onAuthorize = (data, actions) => actions.payment.execute().then(() => {
+    const onAuthorize = (data, actions) => actions.payment.execute().then(executedPayment  => {
       const payment = Object.assign({}, this.props.payment);
+      payment.executed = executedPayment;
       payment.paid = true;
       payment.cancelled = false;
+      payment.orderID = data.orderID;
       payment.payerID = data.payerID;
       payment.paymentID = data.paymentID;
       payment.paymentToken = data.paymentToken;
