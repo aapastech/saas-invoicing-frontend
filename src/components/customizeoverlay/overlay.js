@@ -25,8 +25,6 @@ export default class CustomizedOverlay extends React.Component {
             closeButton,
         } = this.props;
 
-        const { location: { origin, pathname } } = window;
-
         const backgroundStyle = {};
         if(background.color) {
             backgroundStyle.backgroundColor = background.color;
@@ -84,12 +82,12 @@ export default class CustomizedOverlay extends React.Component {
                         <div className={socialIconsClass}>
                             {socialIcons.facebook && (
                                 <a target='_blank' href={socialIcons.facebook}>
-                                    <img src={`${origin+pathname}facebook.svg`} />
+                                    <img src={`${process.env.REACT_APP_API_HOSTNAME}/facebook.svg`} />
                                 </a>
                             )}
                             {socialIcons.twitter && (
                                 <a target='_blank' href={socialIcons.twitter}>
-                                    <img src={`${origin+pathname}twitter.svg`} />
+                                    <img src={`${process.env.REACT_APP_API_HOSTNAME}/twitter.svg`} />
                                 </a>
                             )}
                         </div>
