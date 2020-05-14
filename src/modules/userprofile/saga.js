@@ -59,11 +59,21 @@ function* onSaveAccountDetails({ accountDetails: { name, password, timezone } })
 }
 
 function* onUpgradeMembership({ payment }) {
+    const { message = {}, type } = API_CONFIG.UPGRADE_MEMBERSHIP;
     try {
-        console.log(payment);
+        yield api[type]({ 
+            ...API_CONFIG.UPGRADE_MEMBERSHIP,
+            body: { order: payment }, 
+        });
+        showToast(message.success, 'success');
         yield onGetAccountDetails();
     } catch (error) {
         console.error(error);
+        if(error.displayMessage) {
+            showToast(error.displayMessage, 'error');
+        }
+        const errorMessage = message.error[error.status];
+        if(errorMessage) showToast(errorMessage);
     }
 }
 

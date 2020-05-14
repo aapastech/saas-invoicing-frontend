@@ -286,7 +286,21 @@ const API_CONFIG = {
                 500: 'Please try again after some time. Engineers are at work!',
             },
         }
-    }
+    },
+    UPGRADE_MEMBERSHIP: {
+        url: `${host}membership/order`,
+        type: 'post',
+        isProtected: true,
+        isJson: true,
+        message: {
+            success: 'Order verified successfully, upgrading your membership',
+            error: {
+                400: 'Please login again, your token has expired',
+                401: 'You do not have permissions to create this order',
+                500: 'Please try again after some time. Engineers are at work!',
+            },
+        }
+    },
 };
 
 export default API_CONFIG;
