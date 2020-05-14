@@ -125,6 +125,21 @@ const API_CONFIG = {
             },
         }
     },
+    PAYOUTS_SEND: {
+        url: `${host}/admin/payouts`,
+        type: 'post',
+        headers: null,
+        isProtected: true,
+        isJson: true,
+        urlParams: null,
+        body: null,
+        message: {
+            success: 'Payouts sent successfully',
+            error: {
+                500: 'Please try again after some time. Engineers are at work!'
+            },
+        }
+    },
     OVERLAYS_LIST: {
         url: `${host}overlay`,
         type: 'get',

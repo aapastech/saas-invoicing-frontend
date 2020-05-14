@@ -12,3 +12,9 @@ export function onGetAffiliatesSuccess(affiliates) {
         affiliates,
     }
 }
+
+export function onPayout() {
+    return {
+        type: types.SEND_PAYOUTS,
+    }
+}

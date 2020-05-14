@@ -7,7 +7,7 @@ import Sidebar from 'components/sidebar';
 import { AppBody, Divider, Header } from 'blocks';
 import { redirectTo } from 'modules';
 
-const logo = { src: "https://react.semantic-ui.com/logo.png" };
+const logo = { src: "/logo.svg" };
 
 export class MainApp extends React.PureComponent {
     handleMenuClick = item => {

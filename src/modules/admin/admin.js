@@ -6,10 +6,7 @@ import { Table, Button } from 'blocks';
 import * as actions from './actions';
 import * as selectors from './selectors';
 import 'styles/admin.scss';
-import { 
-    calculateTotalPayoutAmount, calculatePerResellerPayoutAmount ,
-    PERCENT_L1, PERCENT_L2
-} from './utils';
+import { calculateTotalPayoutAmount, PERCENT_L1, PERCENT_L2 } from './utils';
 
 class Admin extends React.Component {
     constructor() {
@@ -22,11 +19,7 @@ class Admin extends React.Component {
             align: 'left', label: 'Affiliate(s) L2', labelField: 'affiliate2',
         }, { 
             align: 'center', label: `Payouts = ${PERCENT_L1}% x L1 + ${PERCENT_L2}% x L2`, renderer: this.renderTotalPayout,
-        }, 
-        // { 
-        //     align: 'right', label: 'Send payments', renderer: this.renderPayout,
-        // }
-        ];
+        }];
     }
 
     componentDidMount() {
@@ -34,17 +27,14 @@ class Admin extends React.Component {
     }
 
     renderTotalPayout = (cols, rowData) => {
-        const formattedPayout = calculatePerResellerPayoutAmount(rowData);
         return (
-            <div>$ {formattedPayout}</div>
+            <div>$ {rowData.amount}</div>
         );
     };
 
-    renderPayout = (cols, rowData) => {
-
+    handlePayoutAll = () => {
+        this.props.onPayout();
     };
-
-    handlePayoutAll = () => {};
 
     render() {
         const { affiliates } = this.props;
@@ -81,6 +71,7 @@ export default connect(
         };
     },
     (dispatch) => ({
+        onPayout: () => dispatch(actions.onPayout()),
         getAffiliates: () => dispatch(actions.onGetAffiliates()),
     })
 )(Admin);
