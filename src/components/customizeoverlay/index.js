@@ -6,7 +6,7 @@ import CustomizeForm from './form';
 import CustomizedOverlay from './overlay';
 const background = {};
 const logo = {
-    url: `${process.env.REACT_APP_API_HOSTNAME}`,
+    url: `${process.env.REACT_APP_API_HOSTNAME}/logo.svg`,
 };
 const message = {
     color: '',
