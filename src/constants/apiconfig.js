@@ -241,6 +241,7 @@ const API_CONFIG = {
             success: 'Link created successfully',
             error: {
                 400: 'You are not authorized to create a Link',
+                403: 'This URL is malicious and thus blocked. Please use some other URL',
                 500: 'Please try again after some time. Engineers are at work!',
             },
         }
@@ -255,6 +256,7 @@ const API_CONFIG = {
             error: {
                 400: 'Please login again, your token has expired',
                 401: 'You do not have permissions to edit this link',
+                403: 'This URL is malicious and thus blocked. Please use some other URL',
                 500: 'Please try again after some time. Engineers are at work!',
             },
         }
