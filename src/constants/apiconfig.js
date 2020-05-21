@@ -111,7 +111,7 @@ const API_CONFIG = {
         }
     },
     PAYOUTS_STATS: {
-        url: `${host}/admin/payouts`,
+        url: `${host}admin/payouts`,
         type: 'get',
         headers: null,
         isProtected: true,
@@ -126,7 +126,7 @@ const API_CONFIG = {
         }
     },
     PAYOUTS_SEND: {
-        url: `${host}/admin/payouts`,
+        url: `${host}admin/payouts`,
         type: 'post',
         headers: null,
         isProtected: true,
