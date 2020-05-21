@@ -30,9 +30,9 @@ function* onLogin({ username, password, remember, redirectUrl }) {
 function* onSignup({ redirectUrl, ...userInputs }) {
     const { message = {}, type } = API_CONFIG.USER_CREATE;
     var query = new URLSearchParams(window.location.search);
-    let referredBy = '';
+    let referredBy = query.get('referral');
     try {
-        referredBy = atob(query.get('referral'));
+        referredBy = referredBy ? atob(referredBy) : '';
     } catch (e) {
         referredBy = '';
     }
