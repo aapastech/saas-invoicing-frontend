@@ -54,8 +54,8 @@ function apiErrorHandler(e) {
     }
     _.forEach(client.subscribers, ({ onError }) => onError(onError));
     if (redirectError) {
-        redirectTo(routeConstants.LOGIN);
         actionDispatchHelper(onLogout);
+        redirectTo(routeConstants.LOGIN);
     }
     throw e;
 }

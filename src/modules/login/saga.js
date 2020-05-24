@@ -1,7 +1,7 @@
 import { takeLatest, put } from 'redux-tale/es/effects';
 import * as redirectActions from 'modules';
 import * as authActions from 'modules/router/actions';
-import * as userProfileActions from 'modules/userprofile/actions';
+import { storeInitialized } from 'models/actions';
 import * as actionTypes from './actiontypes';
 import * as actions from './actions';
 import { showToast } from 'utils/ui';
@@ -20,7 +20,7 @@ function* onLogin({ username, password, remember, redirectUrl }) {
         showToast(message.success, 'success');
         yield put(authActions.onLoginSuccess(token));
         yield put(redirectActions.redirectTo(redirectUrl));
-        yield put(userProfileActions.getAccountDetails());
+        yield put(storeInitialized());
     } catch (error) {
         const errorMessage = message.error[error.status];
         showToast(errorMessage, 'error');
