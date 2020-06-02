@@ -48,7 +48,7 @@ function apiErrorHandler(e) {
     if (e.message === 'Failed to fetch') {
         redirectError = true;
         showToast('Engineers at work! Please try again later', 'error', { exclusive: true });
-    } else if(e.status === 400 && getIsUserAuthenticatedFromStore()) {
+    } else if(e.status === 401 && getIsUserAuthenticatedFromStore()) {
         redirectError = true;
         showToast('Please login again. You have been logged out', 'error', { exclusive: true });
     }
