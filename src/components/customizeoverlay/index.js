@@ -12,6 +12,13 @@ const message = {
     color: '',
     text: 'Set up your own overlay today',
 };
+const title = {
+    color: '',
+    text: 'Get more from information',
+};
+const image = {
+    image: `${process.env.REACT_APP_API_HOSTNAME}/logo.svg`,
+};
 const input = {
     placeholder: 'Please enter your email',
     color: '#ffffff'
@@ -54,6 +61,12 @@ export default class CustomizeOverlay extends React.Component {
             },
             message: {
                 ...message,
+            },
+            title: {
+                ...title,
+            },
+            image: {
+                ...image
             },
             input: {
                 ...input,

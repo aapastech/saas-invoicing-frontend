@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Input, Form, FormField, Button, Radio, FormGroup, ColorPicker } from 'blocks';
+import { 
+    Input, Form, FormField, Button, Radio, FormGroup, ColorPicker, TextArea 
+} from 'blocks';
 import { ImageUpload } from 'modules';
 
 export default class CustomizeForm extends React.Component {
@@ -8,11 +10,15 @@ export default class CustomizeForm extends React.Component {
         super();
         this.state = {
             showLogoUpload: false,
+            showImageUpload: false,
             showBackgroundUpload: false,
         }
         this.handleLogoImage = this.handleLogoImage.bind(this);
         this.handleHideLogoImage = this.handleHideLogoImage.bind(this);
         this.handleSaveLogoImageLink = this.handleSaveLogoImageLink.bind(this);
+        this.handleImage = this.handleImage.bind(this);
+        this.handleHideImage = this.handleHideImage.bind(this);
+        this.handleSaveImageLink = this.handleSaveImageLink.bind(this);
         this.handleBackgroundImage = this.handleBackgroundImage.bind(this);
         this.handleHideBackgroundImage = this.handleHideBackgroundImage.bind(this);
         this.handleSaveBackgroundImageLink = this.handleSaveBackgroundImageLink.bind(this);
@@ -38,6 +44,26 @@ export default class CustomizeForm extends React.Component {
         this.handleHideLogoImage();
     }
 
+    handleImage() {
+        this.setState({ showImageUpload: true });
+    }
+
+    handleHideImage() {
+        this.setState({ showImageUpload: false });
+    }
+
+    handleSaveImageLink(imageUrl) {
+        this.props.saveState(
+            { 
+                image: {
+                    ...this.props.featureFlags.image,
+                    image: imageUrl,
+                }
+            }
+        );
+        this.handleHideImage();
+    }
+
     handleBackgroundImage() {
         this.setState({ showBackgroundUpload: true });
     }
@@ -58,7 +84,7 @@ export default class CustomizeForm extends React.Component {
         this.handleHideBackgroundImage();
     }
     render() {
-        const { showLogoUpload, showBackgroundUpload } = this.state;
+        const { showLogoUpload, showBackgroundUpload, showImageUpload } = this.state;
         const { featureFlags, onChange, saveState, onSave } = this.props;
         return(
             <>
@@ -243,6 +269,66 @@ export default class CustomizeForm extends React.Component {
                                 </FormField>
                             </FormGroup>
                         </div>
+                        {featureFlags.showImage && (
+                            <div className='field-section' title='Recommended image size is 150 X 50'>
+                                <FormGroup>
+                                    <FormField>
+                                        <label>Image</label>
+                                        <Input 
+                                            label={
+                                                <Button type='button' onClick={this.handleImage}>Upload</Button>
+                                            }
+                                            labelPosition='right'
+                                            placeholder='Please enter the image URL' 
+                                            value={featureFlags.image.image} 
+                                            onChange={e => saveState(
+                                                { 
+                                                    image: {
+                                                        ...featureFlags.image,
+                                                        image: e.target.value,
+                                                    }
+                                                }
+                                            )}
+                                        />
+                                    </FormField>
+                                </FormGroup>
+                            </div>
+                        )}
+                        {featureFlags.showTitle && (
+                            <div className='field-section'>
+                                <FormGroup>
+                                    <FormField>
+                                        <label>Title color</label>
+                                        <ColorPicker 
+                                            value={featureFlags.title.color}
+                                            onChange={color => saveState(
+                                                {
+                                                    title: {
+                                                        ...featureFlags.title,
+                                                        color,
+                                                    }
+                                                }
+                                            )} 
+                                        />
+                                    </FormField>
+                                    <FormField>
+                                        <label>Title text</label>
+                                        <Input 
+                                            placeholder='Please enter the title' 
+                                            value={featureFlags.title.text} 
+                                            onChange={e => saveState(
+                                                { 
+                                                    title: {
+                                                        ...featureFlags.title,
+                                                        text: e.target.value,
+                                                    }
+                                                }
+                                            )}
+                                        />
+                                    </FormField>
+                                </FormGroup>
+                            </div>
+                        )}
                         {featureFlags.showMessage && (
                             <div className='field-section'>
                                 <FormGroup>
@@ -262,7 +348,7 @@ export default class CustomizeForm extends React.Component {
                                     </FormField>
                                     <FormField>
                                         <label>Message text</label>
-                                        <Input 
+                                        <TextArea 
                                             placeholder='Please enter the message' 
                                             value={featureFlags.message.text} 
                                             onChange={e => saveState(
@@ -421,6 +507,12 @@ export default class CustomizeForm extends React.Component {
                         onCancel={this.handleHideLogoImage} 
                     />
                 )}
+                {showImageUpload && (
+                    <ImageUpload 
+                        onNewFileLink={this.handleSaveImageLink} 
+                        onCancel={this.handleHideImage} 
+                    />
+                )}
                 {showBackgroundUpload && (
                     <ImageUpload 
                         onNewFileLink={this.handleSaveBackgroundImageLink} 
@@ -441,6 +533,8 @@ CustomizeForm.propTypes = {
         templateClassName: PropTypes.string.isRequired,
         overlayName: PropTypes.string.isRequired,
         showLogo: PropTypes.bool.isRequired,
+        showImage: PropTypes.bool.isRequired,
+        showTitle: PropTypes.bool.isRequired,
         showMessage: PropTypes.bool.isRequired,
         showInput: PropTypes.bool.isRequired,
         showButton: PropTypes.bool.isRequired,

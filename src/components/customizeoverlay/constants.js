@@ -3,6 +3,8 @@ export const featureFlags = {
         calltoaction: {
             1: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: false,
                 showButton: false,
@@ -10,6 +12,8 @@ export const featureFlags = {
             },
             2: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: false,
                 showButton: false,
@@ -17,6 +21,8 @@ export const featureFlags = {
             },
             3: {
                 showLogo: false,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: false,
                 showButton: false,
@@ -26,6 +32,8 @@ export const featureFlags = {
         optin: {
             1: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: true,
                 showButton: true,
@@ -33,6 +41,8 @@ export const featureFlags = {
             },
             2: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: true,
                 showButton: true,
@@ -40,6 +50,8 @@ export const featureFlags = {
             },
             3: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: true,
                 showButton: true,
@@ -51,6 +63,8 @@ export const featureFlags = {
         calltoaction: {
             1: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: false,
                 showButton: false,
@@ -58,6 +72,8 @@ export const featureFlags = {
             },
             2: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: true,
                 showInput: false,
                 showButton: true,
@@ -67,8 +83,23 @@ export const featureFlags = {
         optin: {
             1: {
                 showLogo: true,
+                showImage: false,
+                showTitle: false,
                 showMessage: false,
                 showInput: true,
+                showButton: true,
+                showSocialIcons: false,
+            }
+        }
+    },
+    popup: {
+        calltoaction: {
+            1: {
+                showLogo: false,
+                showImage: true,
+                showTitle: true,
+                showMessage: true,
+                showInput: false,
                 showButton: true,
                 showSocialIcons: false,
             }

@@ -7,7 +7,7 @@ import OptinImg from 'img/overlay/category/popup/optin.png';
 
 const entities = [
     {type: 'calltoaction', caption: 'Call To Action', img: CallToActionImg},
-    {type: 'optin', caption: 'Opt in', img: OptinImg},
+    // {type: 'optin', caption: 'Opt in', img: OptinImg},
 ]
 
 export default function ShowOverlayPopupCategory(props) {

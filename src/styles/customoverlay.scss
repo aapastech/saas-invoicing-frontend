@@ -16,8 +16,9 @@
     position: relative;
 }
 
-.bar, .notification {
+.bar, .notification, .popup {
     background-color: #2185D0;
+    background-size: contain;
 }
 
 .elements {
@@ -94,6 +95,28 @@
 
     .hidden {
         display: none;
+    }
+}
+
+.popup {
+    width: 300px;
+    height: 300px;
+    flex-direction: column;
+    justify-content: space-around;
+    @extend .elements;
+
+    .hidden {
+        display: none;
+    }
+
+    .img {
+        max-height: 50px;
+        max-width: 170px;
+    }
+
+    .message {
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 }
 

@@ -18,6 +18,7 @@ export const Radio = ComponentWrapper(Semantic.Radio);
 export const FormField = ComponentWrapper(Semantic.Form.Field);
 export const FormInput = ComponentWrapper(Semantic.Form.Input);
 export const Select = ComponentWrapper(Semantic.Select);
+export const TextArea = ComponentWrapper(Semantic.TextArea);
 
 export { Box } from './box';
 export { default as FluidContainer } from './fluidcontainer';

@@ -12,11 +12,15 @@ export default class CustomizedOverlay extends React.Component {
             shouldFadePageBackground,
             showLogo,
             showMessage,
+            showImage,
+            showTitle,
             showInput,
             showButton,
             showSocialIcons,
             logo,
             message,
+            image,
+            title,
             input,
             button,
             socialIcons,
@@ -51,6 +55,17 @@ export default class CustomizedOverlay extends React.Component {
                                 {!logo.image && <div className='dummy-logo'>Logo</div>}
                             </a>
                         </div>
+                        {showImage && image.image && (
+                            <img width="170" height="50" src={image.image} className='img' />
+                        )}
+                        {showTitle && (
+                            <div 
+                                className='title'
+                                style={{
+                                    color: title.color,
+                                }}
+                            >{title.text}</div>
+                        )}
                         {showMessage && (
                             <div 
                                 className='message'
@@ -113,6 +128,7 @@ CustomizedOverlay.propTypes = {
     overlayName: PropTypes.string.isRequired,
     showLogo: PropTypes.bool.isRequired,
     showMessage: PropTypes.bool.isRequired,
+    showTitle: PropTypes.bool.isRequired,
     showInput: PropTypes.bool.isRequired,
     showButton: PropTypes.bool.isRequired,
     showSocialIcons: PropTypes.bool.isRequired,
