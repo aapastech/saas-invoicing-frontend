@@ -42,6 +42,7 @@
     }
 
     .message {
+        @extend .textFonts;
         color: #ffffff;
     }
 
