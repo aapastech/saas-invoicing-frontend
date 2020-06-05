@@ -10,14 +10,14 @@ const logo = {
 };
 const message = {
     color: '',
-    text: 'Set up your own overlay today',
+    text: 'Lets make it memorable, Subscribe our GOLD plan today!',
 };
 const title = {
-    color: '',
-    text: 'Get more from information',
+    color: '#ffffff',
+    text: 'Thinking about dinner date?',
 };
 const image = {
-    image: `${process.env.REACT_APP_API_HOSTNAME}/logo.svg`,
+    image: `${process.env.REACT_APP_API_HOSTNAME}/popupimage.png`,
 };
 const input = {
     placeholder: 'Please enter your email',

@@ -21,6 +21,11 @@
     background-size: contain;
 }
 
+.textFonts {
+    font-size: 14px;
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
+}
+
 .elements {
     @extend .horizontalOverlayProperty;
 
@@ -114,7 +119,14 @@
         max-width: 170px;
     }
 
+    .title {
+        @extend .textFonts;
+    }
+
     .message {
+        @extend .textFonts;
+
+        margin: 0 10px;
         overflow-wrap: break-word;
         word-break: break-word;
     }
