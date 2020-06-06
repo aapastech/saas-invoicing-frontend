@@ -42,6 +42,7 @@ export default class CustomizedOverlay extends React.Component {
         const logoClass = `logo ${showLogo ? '': 'hidden'}`;
         const positionClass = positionedBottom ? 'position-bottom': 'position-top';
 
+        const messageText = message.text ? _.replace(message.text, /\n/g, '<br />') : '';
         return(
             <>
                 <div className='dummy-page'>
@@ -72,7 +73,8 @@ export default class CustomizedOverlay extends React.Component {
                                 style={{
                                     color: message.color,
                                 }}
-                            >{message.text}</div>
+                                dangerouslySetInnerHTML={{ __html: messageText }}
+                            ></div>
                         )}
                         <div className='flexible'>
                             {showInput && (
