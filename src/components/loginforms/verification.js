@@ -33,8 +33,8 @@ export default class Verification extends React.Component {
         const { onResendVerificationCode, emailAddress, onSigninClick } = this.props;
         return (
             <>
-                <CenterContainerCard cols={6}>
-                    <Box className='border-box'>
+                <CenterContainerCard cols={6} className="loginpage">
+                    <Box className='border-box loginformContainer'>
                         <Form>
                             <FormField>
                                 Please enter the verification code sent to <View className='inline link'>{emailAddress}</View>

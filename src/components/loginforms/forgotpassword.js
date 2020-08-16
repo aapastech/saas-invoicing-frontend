@@ -33,8 +33,8 @@ export default class ForgotPassword extends React.Component {
         const { onSigninClick } = this.props;
         return (
             <>
-                <CenterContainerCard cols={6}>
-                    <Box className='border-box'>
+                <CenterContainerCard cols={6} className="loginpage">
+                    <Box className='border-box loginformContainer'>
                         <Form>
                             <FormField>
                                 Please enter your registered email ID

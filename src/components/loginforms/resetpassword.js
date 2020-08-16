@@ -41,8 +41,8 @@ export default class ResetPassword extends React.Component {
         const { onSigninClick } = this.props;
         return (
             <>
-                <CenterContainerCard cols={5}>
-                    <Box className='border-box'>
+                <CenterContainerCard cols={5} className="loginpage">
+                    <Box className='border-box loginformContainer'>
                         <Form>
                             <FormField>
                                 Please enter the new password

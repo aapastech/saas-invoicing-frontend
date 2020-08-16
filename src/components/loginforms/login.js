@@ -49,8 +49,8 @@ export default class Login extends React.Component {
         const { onSignupClick, onForgotPasswordClick } = this.props;
         return (
             <>
-                <CenterContainerCard cols={5}>
-                    <Box className='border-box'>
+                <CenterContainerCard className="loginpage" cols={5}>
+                    <Box className='border-box loginformContainer'>
                         <Form onSubmit={this.handleLoginClick}>
                             <FormField>
                                 Welcome back!

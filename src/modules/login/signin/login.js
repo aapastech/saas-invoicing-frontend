@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { redirectTo } from 'modules';
+import 'styles/loginform.scss';
 
 import { LoginForm } from 'components/loginforms';
 
