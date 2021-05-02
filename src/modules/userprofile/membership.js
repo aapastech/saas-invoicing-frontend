@@ -58,10 +58,10 @@ class Membership extends React.Component {
                         <div className='detail-label cell font-bold'>Create Overlay(s) limit:</div>
                         <div className='detail-value cell-w2'>{membership.overlaysLimit}</div>
                     </div>
-                    {/* <div key='detail' className='detail flexible p-6-3'>
+                    <div key='detail' className='detail flexible p-6-3'>
                         <div className='detail-label cell font-bold'>Link sharing limit:</div>
                         <div className='detail-value cell-w2'>{membership.shareLinkLimit} per month</div>
-                    </div> */}
+                    </div>
                     {membership.type === 'basic' && (
                         <>
                             <div key='detail' className='detail flexible p-6-3 m-top-30'>
