@@ -156,5 +156,6 @@
     "eslint-plugin-react": "^7.19.0",
     "gh-pages": "^2.2.0",
     "url-loader": "^2.3.0"
-  }
+  },
+  "proxy": "https://usetheviews.com"
 }
