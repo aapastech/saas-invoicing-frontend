@@ -1,0 +1,224 @@
+.enlarged {
+    font-size: large !important;
+}
+
+.overlays, .new-overlay {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 100px);
+}
+
+.new-overlay {
+    max-width: calc(100vw - 10%);
+    max-height: calc(100vh - 90px);
+}
+
+.overlay {
+    &-container {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+
+        img {
+            width: 100%;
+            margin: auto;
+            max-height: 135px;
+        }
+    }
+
+    &-list {
+        justify-content: space-between;
+        overflow-y: auto;
+        max-width: calc(100vw - 10%);
+        padding: 20px;
+        display: flex;
+        flex: 1;
+
+        .templates-popup, .templates-fullpage {
+            .overlay-container {
+                img {
+                    width: auto;
+                    height: auto;
+                    max-height: 200px;
+                }
+            }
+        }
+    }
+
+    &-root {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &-card {
+        flex: 1;
+
+        > div {
+            width: 350px;
+            max-width: 350px;
+            padding: 0 !important;
+            margin: 1rem !important;
+            max-height: 15rem;
+
+            > div {
+                > div.placeholder {
+                    margin: 1rem 1rem 0 1rem;
+                }
+            } 
+        }
+    }
+
+    &-row {
+        flex: 1;
+        flex-direction: column;
+
+        > div {
+            width: 750px;
+            max-width: 750px;
+            padding: 0 !important;
+            margin: 1rem !important;
+            max-height: 15rem;
+
+            > div {
+                > div.placeholder {
+                    margin: 1rem 1rem 0 1rem;
+                }
+            } 
+        }
+    }
+
+    &-fullpage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        position: absolute !important;
+        top: 0;
+        height: 100%;
+        margin: 0 !important;
+        opacity: 0.8;
+    }
+
+    &-expandedview {
+        @extend .overlay-fullpage;
+        >.icon {
+            visibility: hidden;
+        }
+        &:hover {
+            background-color: grey;
+            >.icon {
+                visibility: visible;
+            }
+        }
+    }
+
+    &-popup {
+        width: 25rem;
+        position: absolute !important;
+        bottom: 2rem;
+        right: 1rem;
+        height: 15rem;
+        > div {
+            width: 100%;
+        }
+        >.overlay-logo  {
+            background-color: #6435c9;
+        }
+    }
+
+    &-fullscreen {
+        @extend .overlay-fullpage;
+    }
+
+    &-notification {
+        width: 60%;
+        position: absolute !important;
+        bottom: 1rem;
+        align-items: center;
+        padding: 0.5rem 1rem !important;
+    }
+
+    &-name {
+        top: 1rem !important;
+    }
+
+    &-bar {
+        width: 100%;
+        position: absolute !important;
+        bottom: 1rem;
+        align-items: center;
+        padding: 0.5rem 1rem !important;
+    }
+
+    &-zoomview {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+
+        .relative {
+            img {
+                width: 100%;
+                max-height: fit-content;
+            }
+        }
+    }
+
+    &-message {
+        justify-content: center;
+        text-align: center;
+
+        &--enlarged {
+            @extend .enlarged
+        }
+    }
+
+    &-email {
+        &--enlarged {
+            @extend .enlarged
+        }
+    }
+
+    &-logo {
+        &--enlarged {
+            h4 {
+                @extend .enlarged
+            }
+        }
+    }
+
+    &-subscribe {
+        &--enlarged {
+            button {
+                @extend .enlarged
+            }
+        }
+    }
+
+}
+
+.customization-form {
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-right: 1px solid #ccc;
+    height: 100%;
+    max-height: calc(100vh - 30px);
+    display: flex;
+    flex: 1 0 auto;
+    form {
+        width: 100%;
+        > div.field-section {
+            border-width: thin;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+            transition: ease-in-out;
+            transition-property: background-color;
+            transition-duration: 0.3s;
+
+            &:hover {
+                background-color: #D6D5DB;
+                box-shadow: 2px 2px #000 5px;
+            }
+        }
+    }
+}
