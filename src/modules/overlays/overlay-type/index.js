@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OverlayPage from 'components/createoverlays/overlay-page';
-import { withRouter } from 'utils/reactRouterHelper';
+import { withRouter } from 'react-router-dom';
 
 class OverlayType extends React.Component {
     render() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'utils/reactRouterHelper';
+import { withRouter } from 'react-router-dom';
 import CustomizeOverlayComponent from 'components/customizeoverlay';
 import { redirectTo } from 'modules';
 import { showToast } from 'utils/ui';

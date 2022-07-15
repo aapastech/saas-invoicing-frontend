@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 import { createBrowserHistory } from 'history';
 import { 
   Login, Logout, Signup, ForgotPassword, Verification, Dashboard, ResetPassword, 
@@ -20,81 +20,67 @@ export function redirectTo(url) {
   };
 }
 
-export default function RoutesCollection() {
+export default function Routes() {
   return (
     <Router history={history}>
-      <Routes>
-        <Route path={constants.BASE_PATH} element={<Navigate replace to={constants.DASHBOARD} />} />
-        <Route path={constants.LOGIN} element={
+      <Switch>
+        <Route exact path={constants.BASE_PATH}>
+          <Redirect to={constants.DASHBOARD} />
+        </Route>
+        <Route exact path={constants.LOGIN}>
           <Login 
             redirectTo={constants.DASHBOARD} 
             signupPath={constants.SIGN_UP} 
             forgotpasswordPath={constants.FORGOT_PASSWORD} 
           />
-        } />
-        <Route path={constants.SIGN_UP} element={
+        </Route>
+        <Route exact path={constants.SIGN_UP}>
           <Signup redirectTo={constants.DASHBOARD} signinPath={constants.LOGIN} />
-        } />
-        <Route path={constants.FORGOT_PASSWORD} element={
+        </Route>
+        <Route exact path={constants.FORGOT_PASSWORD}>
           <ForgotPassword redirectTo={constants.VERIFICATION} signinPath={constants.LOGIN} />
-        } />
-        <Route path={constants.VERIFICATION} element={
+        </Route>
+        <Route exact path={constants.VERIFICATION}>
           <Verification redirectTo={constants.RESET_PASSWORD} signinPath={constants.LOGIN} />
-        } />
-        <Route path={constants.RESET_PASSWORD} element={
+        </Route>
+        <Route exact path={constants.RESET_PASSWORD}>
           <ResetPassword redirectTo={constants.DASHBOARD} signinPath={constants.LOGIN} />
-        } />
-        <Route path={constants.DASHBOARD} element={
-          <PrivateRoute>
+        </Route>
+        <PrivateRoute exact path={constants.DASHBOARD}>
             <Dashboard />
-          </PrivateRoute>
-        } />
-        <Route path={constants.LIST_LINKS} element={
-          <PrivateRoute>
-              <LinksList />
-          </PrivateRoute>
-        } />
-        <Route path={constants.NEW_OVERLAY} element={
-          <PrivateRoute>
-              <CreateOverlay 
-                customizeOverlayPath={constants.CUSTOMIZE_OVERLAY} 
-                overlaysListPath={constants.LIST_OVERLAY} 
-              />
-          </PrivateRoute>
-        } />
-        <Route path={constants.EDIT_OVERLAY} element={
-          <PrivateRoute>
-              <CustomizeOverlay overlayListPath={constants.LIST_OVERLAY} />
-          </PrivateRoute>
-        } />
-        <Route path={constants.LIST_OVERLAY} element={
-          <PrivateRoute>
-              <OverlaysList 
-                editOverlayPath={constants.CUSTOMIZE_OVERLAY} 
-                newOverlayPath={constants.NEW_OVERLAY} 
-              />
-          </PrivateRoute>
-        } />
-        <Route path={constants.USER_PROFILE} element={
-          <PrivateRoute>
-              <UserProfile />
-          </PrivateRoute>
-        } />
-        <Route path={constants.LOGOUT} element={
-          <PrivateRoute>
-              <Logout signinPath={constants.LOGIN} />
-          </PrivateRoute>
-        } />
-        <Route path={constants.ADMIN} element={
-          <PrivateRoute>
-              <Admin />
-          </PrivateRoute>
-        } />
-        <Route path={constants.OVERLAY_TYPES_REDESIGNING} element={
+        </PrivateRoute>
+        <PrivateRoute exact path={constants.LIST_LINKS}>
+            <LinksList />
+        </PrivateRoute>
+        <PrivateRoute exact path={constants.NEW_OVERLAY}>
+            <CreateOverlay 
+              customizeOverlayPath={constants.CUSTOMIZE_OVERLAY} 
+              overlaysListPath={constants.LIST_OVERLAY} 
+            />
+        </PrivateRoute>
+        <PrivateRoute exact path={constants.EDIT_OVERLAY}>
+            <CustomizeOverlay overlayListPath={constants.LIST_OVERLAY} />
+        </PrivateRoute>
+        <PrivateRoute exact path={constants.LIST_OVERLAY}>
+            <OverlaysList 
+              editOverlayPath={constants.CUSTOMIZE_OVERLAY} 
+              newOverlayPath={constants.NEW_OVERLAY} 
+            />
+        </PrivateRoute>
+        <PrivateRoute exact path={constants.USER_PROFILE}>
+            <UserProfile />
+        </PrivateRoute>
+        <PrivateRoute exact path={constants.LOGOUT}>
+            <Logout signinPath={constants.LOGIN} />
+        </PrivateRoute>
+        <PrivateRoute exact path={constants.ADMIN}>
+            <Admin />
+        </PrivateRoute>
+        <Route exact path={constants.OVERLAY_TYPES_REDESIGNING}>
           <OverlayType />
-        } />
-        <Route path='*' element={<Navigate replace to={constants.LOGIN} />} />
-      </Routes>
+        </Route>
+        <Redirect to={constants.LOGIN} />
+      </Switch>
     </Router>
   );
 }

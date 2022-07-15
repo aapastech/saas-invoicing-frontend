@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import constants from './constants';
+import { Route } from "react-router-dom";
 
 import MainBody from 'modules/mainbody';
 
@@ -21,14 +20,13 @@ export class PrivateRoute extends React.Component {
     render() {
       const { isAuthenticated, children, ...rest } = this.props;
 
-      if (!isAuthenticated) return (
-        <Route path='*' element={<Navigate replace to={constants.LOGIN} />} />
-      );
-
+      if (!isAuthenticated) return null;
       return (
-        <MainBody>
-          {children}
-        </MainBody>
+          <Route {...rest}>
+            <MainBody>
+              {children}
+            </MainBody>
+          </Route>
       );
     }
 }

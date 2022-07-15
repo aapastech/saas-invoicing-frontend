@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { withRouter } from 'utils/reactRouterHelper';
+import { withRouter } from 'react-router-dom';
 
 import Sidebar from 'components/sidebar';
 import { AppBody, Divider, Header } from 'blocks';
