@@ -1,6 +1,6 @@
 import React from 'react';
-import { Routes } from '../modules';
-import Loader from '../components/loader';
+import { Routes } from 'modules';
+import Loader from 'components/loader';
 import { Provider } from 'react-redux';
 import getStore from './store.js';
 
