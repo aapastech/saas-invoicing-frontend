@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import scriptLoader from 'react-async-script-loader';
 import PropTypes from 'prop-types';
  
 class PaypalButton extends React.Component {
@@ -103,4 +102,4 @@ PaypalButton.defaultProps = {
   description: 'Payment for upgrading UTV membership',
 };
  
-export default scriptLoader('https://www.paypalobjects.com/api/checkout.js')(PaypalButton);
+export default PaypalButton;
